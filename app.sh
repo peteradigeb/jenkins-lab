@@ -1,3 +1,4 @@
 #!/bin/bash
-echo "Hello from Jenkins Pipeline"
+echo "Running tests..."
+exit 1
 
