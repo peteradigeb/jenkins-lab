@@ -1,27 +1,17 @@
 pipeline {
     agent any
 
-    environment {
-        APP_ENV = "ci"
-    }
-
     stages {
-        stage('Test') {
+        stage('Build Docker Image') {
             steps {
-                sh 'echo "Environment: $APP_ENV"'
-                sh 'chmod +x app.sh'
-                sh './app.sh'
+                sh 'docker build -t jenkins-docker-demo .'
+            }
+        }
+
+        stage('Run Container') {
+            steps {
+                sh 'docker run --rm jenkins-docker-demo'
             }
         }
     }
-
-    post {
-        success {
-            echo 'Pipeline succeeded'
-        }
-        failure {
-            echo 'Pipeline failed — fix required'
-        }
-    }
 }
-

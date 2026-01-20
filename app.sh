@@ -1,4 +1,4 @@
 #!/bin/bash
-echo "Running tests..."
-exit 1
+echo "Running inside Docker from Jenkins"
+exit 0
 
