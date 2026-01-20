@@ -1,24 +1,27 @@
 pipeline {
     agent any
 
+    environment {
+        APP_ENV = "ci"
+    }
+
     stages {
-        stage('Checkout') {
-            steps {
-                echo 'Code checked out'
-            }
-        }
-
-        stage('Build') {
-            steps {
-                echo 'Build stage (nothing to build yet)'
-            }
-        }
-
         stage('Test') {
             steps {
-		sh 'chmod +x app.sh'
+                sh 'echo "Environment: $APP_ENV"'
+                sh 'chmod +x app.sh'
                 sh './app.sh'
             }
         }
     }
+
+    post {
+        success {
+            echo 'Pipeline succeeded'
+        }
+        failure {
+            echo 'Pipeline failed — fix required'
+        }
+    }
 }
+
