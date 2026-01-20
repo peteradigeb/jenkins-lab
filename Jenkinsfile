@@ -25,8 +25,8 @@ pipeline {
             steps {
                 echo 'Tagging and pushing Docker image to PROD'
                 sh 'docker tag $DEV_TAG $PROD_TAG'
-                # Optional: push to DockerHub (requires credentials)
-                # sh 'docker push $PROD_TAG'
+                // Optional: push to DockerHub (requires credentials)
+                // sh 'docker push $PROD_TAG'
             }
         }
     }
